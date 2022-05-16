@@ -1,0 +1,7 @@
+• Wording and coefficient (expressed as a percentage) of each subject (3 points)
+
+SELECT wording,(coef/4)*100 AS coefficient FROM matter;
+
+• Sum of coefficients of all subject (3 points)
+
+SELECT SUM(coef) AS sum_of_coefficients FROM matter

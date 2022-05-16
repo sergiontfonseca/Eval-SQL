@@ -1,0 +1,56 @@
+INSERT INTO student(name,firstname,dateofbirth,street,postalcod,city)
+VALUES
+('Dupont','Raphael','1989-09-27','Rue Bonnefoi','69003','Lyon'),
+('Durand','Antoine','1989-10-18','57-53 Bd Gabriel Lauriol','44300','Nantes'),
+('Martin','Gabriel','1989-01-03','21 Rue Hippolyte','34000','Montpellier'),
+('Beaumont','Juliette','1989-07-11','52-58 Rue du Dr Cauvin','13012','Marseille'),
+('Auclair','Louise','1989-04-18','4 Rue de la Pellerine','45000','Orléans'),
+('Auclair','Pauline','1989-05-31','4 Rue de la Pellerine','45000','Orléans'),
+('Aguillard','Charles','1989-03-14','32 Rue Dorigny','51100','Reims');
+
+INSERT INTO matter(codemat,wording,coef)
+VALUES
+('math','Mathématiques',2),
+('hist','Histoire',1),
+('arts','Arts',1);
+
+INSERT INTO test(testdate,place,codemat)
+VALUES
+('2014-01-01','Room 1','math'),
+('2014-01-01','Room 1','arts'),
+('2014-01-01','Room 3','hist'),
+('2014-01-01','Room 4','arts'),
+('2014-01-01','Room 5','math');
+
+INSERT INTO notation(numstud,numtest,score)
+VALUES
+(1,1,10),
+(2,1,15),
+(3,1,14.2),
+(4,1,13.7),
+(5,1,13),
+(6,1,11.8),
+(7,1,14),
+(1,2,10.2),
+(2,2,11.8),
+(3,2,15.4),
+(4,2,3.4),
+(6,2,16.8),
+(7,2,17.2),
+(5,2,10.5),
+(1,3,7.1),
+(2,3,8.5),
+(3,3,18.1),
+(5,3,8.3),
+(6,3,9.5),
+(7,3,14.2),
+(3,4,20),
+(4,4,20),
+(5,4,19.9),
+(6,4,9),
+(7,4,8.8),
+(1,5,7),
+(2,5,7),
+(3,5,7.3),
+(4,5,7.4),
+(5,5,5);

@@ -1,0 +1,82 @@
+ Total number of tests (1 point)
+
+SELECT COUNT(*) FROM notation; --number of tests made by students
+
+ List of score, specifying for each the name and first name of the student who obtained it (1 point)
+
+SELECT score,name,firstname FROM notation
+INNER JOIN student ON
+notation.numstud = student.numstud;
+
+ List of score, specifying for each the name and first name of the student who obtained it and the
+wording of the matter concerned (1 point)
+
+SELECT score,name,firstname,wording FROM notation
+INNER JOIN student ON
+notation.numstud = student.numstud
+INNER JOIN test ON
+notation.numtest = test.numtest
+INNER JOIN matter ON
+test.codemat = matter.codemat;
+
+ List of score greater than or equal to 10 (1 point)
+
+SELECT score FROM notation
+WHERE score >= 10;
+
+ Last name and first name of the students who obtained at least a score equal to 20 (1 point)
+
+SELECT score,name,firstname FROM notation
+INNER JOIN student ON
+notation.numstud = student.numstud
+WHERE score =20;
+
+ Average scores for each student (indicate name and first name) (1 point)
+
+SELECT ROUND(AVG(score),2),name,firstname FROM notation
+INNER JOIN student ON
+notation.numstud = student.numstud
+GROUP BY name,firstname
+ORDER BY name,firstname;
+
+ List of tests whose date is between January 1 and June 30, 2014 (1 point)
+
+SELECT * FROM notation
+INNER JOIN test ON
+notation.numtest = test.numtest
+WHERE testdate >= '2014-01-01' AND
+testdate <= '2014-06-30';
+
+ List of tests (number, date and place) including the matter of the subject (1 point)
+
+SELECT notation.numtest,testdate,place,wording FROM notation
+INNER JOIN test ON
+notation.numtest = test.numtest
+INNER JOIN matter ON
+test.codemat = matter.codemat;
+
+ Average scores for each student (indicate name and first name), ranked from best to worst (1 point)
+
+SELECT name,firstname FROM notation, ROUND(AVG(score),2) AS average
+INNER JOIN student ON
+notation.numstud = student.numstud
+GROUP BY name,firstname
+ORDER BY AVG(score) DESC;
+
+ Average scores for matter (indicate the wording) comprising more than one test (4 points)
+
+SELECT codemat,ROUND(AVG(score),2) AS average FROM notation
+INNER JOIN test ON
+notation.numtest = test.numtest
+WHERE codemat IN
+	(SELECT codemat FROM test 
+	GROUP BY codemat
+	HAVING COUNT(numtest) > 1)
+GROUP BY codemat;
+
+ Average of score obtained in the tests (indicate the number of the test) where less than 6 students
+were rated (4 points)
+
+SELECT numtest,ROUND(AVG(score),2) FROM notation
+GROUP BY numtest
+HAVING COUNT(numstud) < 6;

@@ -1,0 +1,28 @@
+CREATE DATABASE sql_evaluation;
+
+CREATE TABLE Matter (
+	codemat VARCHAR(50) PRIMARY KEY, 
+	wording VARCHAR NOT NULL, 
+	coef NUMERIC NOT NULL
+);
+CREATE TABLE Student (
+    	numstud SERIAL PRIMARY KEY,
+    	name VARCHAR(50) NOT NULL,
+    	firstname VARCHAR(50) NOT NULL,
+    	dateofbirth DATE NOT NULL,
+    	street VARCHAR(250) NOT NULL,
+	postalcod VARCHAR(50) NOT NULL,
+	city VARCHAR(50) NOT NULL
+);
+CREATE TABLE Test (
+	numtest SERIAL PRIMARY KEY, 
+	testdate DATE NOT NULL, 
+	place VARCHAR(50) NOT NULL,
+	codemat VARCHAR(50) REFERENCES Matter(codemat)
+);
+CREATE TABLE Notation (
+	numstud INTEGER REFERENCES Student(numstud), 
+	numtest INTEGER REFERENCES Test(numtest),
+	score NUMERIC NOT NULL,
+	PRIMARY KEY(numstud,numtest)
+);
